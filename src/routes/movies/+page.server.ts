@@ -1,7 +1,14 @@
 import { env } from "$env/dynamic/private";
+import type { PageServerLoad } from "./$types";
 
-export async function load() {
-  async function fetchMoviesDatabase() {
+type Movie = {
+  title: string;
+  overview: string;
+  vote_average: number;
+};
+
+export const load: PageServerLoad = async () => {
+  async function fetchMoviesDatabase(): Promise<Movie[]> {
     const url =
       "https://api.themoviedb.org/3/trending/movie/day?language=en-US";
     const options = {
@@ -24,4 +31,4 @@ export async function load() {
   return {
     movies: fetchMoviesDatabase(),
   };
-}
+};
