@@ -1,5 +1,7 @@
-<h1>Home</h1>
+<script>
+  import { page } from "$app/stores";
+</script>
 
-<a href="/shop" data-sveltekit-preload-data>Shop</a>
-<!-- quando o hover sobre o link acontece, ele faz um prefetch dos dados carregando antes da pessoa ir pra aquela pagina, isso melhora a experiencia do user -->
-<a href="/movies" data-sveltekit-preload-data>movies</a>
+{#if $page.data.user}
+  <p>Hello {$page.data.user}</p>
+{/if}
